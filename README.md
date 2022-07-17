@@ -45,10 +45,14 @@ The first version of the password generator is simple, so you can at this moment
 
 As you can see above, the program has generated a random password based on the number of letters, symbols, and numbers I selected.
 
+---
+
 <a name="license"></a>
 ## License 
 
 Distributed under the GNU General Public License v3.0. See `LICENSE.txt` for more information.
+
+---
 
 <a name="author"></a>
 ## Author 
@@ -56,6 +60,8 @@ Distributed under the GNU General Public License v3.0. See `LICENSE.txt` for mor
 🖥️ **John Dorman**
 
 * Github: [@johnDorman98](https://github.com/johnDorman98)
+
+---
 
 ## Show your support
 
