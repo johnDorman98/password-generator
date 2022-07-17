@@ -11,10 +11,10 @@ symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 # Welcome message and getting input from user.
 print("Welcome to the PyPassword Generator!")
 
-while(True):
-    nr_letters= int(input("How many letters would you like in your password?\n")) 
-    nr_symbols = int(input(f"How many symbols would you like?\n"))
-    nr_numbers = int(input(f"How many numbers would you like?\n"))
+
+# Function to generate the password.
+def generate_password(letters, numbers, symbols):
+    nr_letters, nr_symbols, nr_numbers = validate_input()
 
     # Variable to store password.
     password = ""
@@ -31,20 +31,66 @@ while(True):
     for number in range(nr_numbers):
         random_number = random.choice(numbers)
         password += random_number
+        
+    return password
 
-    # Prints off password before it is shuffled.
-    print(f"Password before shuffle: {password}")
 
+def validate_input():
+    try:
+        nr_letters = int(input("How many letters would you like in your password?\n")) 
+        nr_symbols = int(input(f"How many symbols would you like?\n"))
+        nr_numbers = int(input(f"How many numbers would you like?\n"))
+        
+        return nr_letters,nr_symbols,nr_numbers
+    except ValueError:
+        print("Please only enter the number or letters, symbols or numbers you wish to generate, e.g. type '5' if you would like '5' letters in your password.")
+        validate_input()
+    
+    return nr_letters,nr_symbols,nr_numbers
+
+
+# Function that suffles the password into random order.
+def shuffle_password(password):
     # Password is converted to a list then shuffled then joined back into a string.
     password_list = list(password)
     shuffled_password = random.shuffle(password_list)
     joined_password = "".join(password_list)
 
-    # Print off final password.
-    print(f"Password after shuffle: {joined_password}")
+    return joined_password
 
-    generate_new_password = input("Do you wish to generator a new password, type 'y' for yes or 'n' for no.").lower()
 
-    if generate_new_password == "n":
-        print("Thank you for using the password generator.\nbrought to you by Namrods.")
+# Prints off menu for the user to select and option from.
+def menu():
+    user_choice = input("""
+    Please type the number associated with your selection.
+
+    1. Generate password.
+    2. Display unshuffled password.
+    3. Display shuffled password.
+    4. Exit program.
+    Enter your choice: """)
+
+    return user_choice
+
+# While loop which will keep running until exited via the menu.
+while(True):
+
+    # Stores the users selected option.
+    user_selection = menu()
+    
+    # Checks the users option then performs the option that has been selected by the user.
+    if user_selection == "1":
+        password = generate_password(letters, numbers, symbols)
+    elif user_selection == "2":
+        # Prints off password before it is shuffled.
+        print(f"\n\tPassword before shuffle: {password}") 
+    elif user_selection == "3":
+        # Calls shuffle_password to shuffle the password then joins it back into a string version of the password.
+        joined_password = shuffle_password(password)
+        # Print off final password.
+        print(f"\n\tPassword after shuffle: {joined_password}")
+    elif user_selection == "4":
+        print("Thank you for using the password generator.\nBrought to you by Namrods.")
         break
+    else:
+        print("Please only type options 1 - 4 as a number, e.g type '1' for option 1.")
