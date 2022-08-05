@@ -8,7 +8,7 @@
  6. [Author](#author)
 
 <a id="introduction"></a>
-## Welcome to my Java Project Management Program. 👋 
+## Welcome to my Python password generator. 👋 
 This project will be my first version of a password generator. It will act as the skeleton for a larger project where I will add additional features such as a GUI and different passwrod generator features.
 
 ---
